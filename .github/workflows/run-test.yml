@@ -33,7 +33,11 @@ jobs:
         run: cat .env
 
       - name: Start containers
-        run: docker-compose --env-file .env up -d
+        run: |
+          docker-compose --env-file .env up -d
+          echo "Waiting for LocalStack startup..."
+          localstack wait -t 30    
+          echo "Startup complete"
 
       # Runs a single command using the runners shell
       - name: Set up JDK 11
