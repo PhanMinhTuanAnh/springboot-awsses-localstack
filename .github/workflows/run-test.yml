@@ -30,7 +30,7 @@ jobs:
           cat .env
 
       - name: Start containers
-        run: docker-compose --env-file .env up
+        run: docker-compose --env-file .env up -d
 
       # Runs a single command using the runners shell
       - name: Set up JDK 11
