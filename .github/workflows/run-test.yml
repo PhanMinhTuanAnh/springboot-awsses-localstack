@@ -23,8 +23,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Create env file
+        run: |
+          touch .env
+          echo LOCALSTACK_API_KEY=${{ secrets.LOCALSTACK_API_KEY }} >> .env
+          cat .env
+
       - name: Start containers
-        run: docker-compose
+        run: docker-compose --env-file .env up
 
       # Runs a single command using the runners shell
       - name: Set up JDK 11
