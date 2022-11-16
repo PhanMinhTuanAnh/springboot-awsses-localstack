@@ -30,14 +30,11 @@ jobs:
           cat .env
 
       - name: Show LOCALSTACK_API_KEY
-        run: cat .env
+        run: cat docker-compose
 
       - name: Start containers
         run: |
           docker-compose --env-file .env up -d
-          echo "Waiting for LocalStack startup..."
-          localstack wait -t 30    
-          echo "Startup complete"
 
       # Runs a single command using the runners shell
       - name: Set up JDK 11
