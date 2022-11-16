@@ -66,7 +66,11 @@ class SendMessageSESv2 {
                     "<body>\n" +
                     "Hello world!!!" +
                     "</body>\n")
-            send(client, sender, recipients, subject, bodyHTML, i)
+            try {
+                send(client, sender, recipients, subject, bodyHTML, i)
+            } catch (e: Exception) {
+                throw e
+            }
         }
     }
 
